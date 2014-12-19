@@ -1,5 +1,4 @@
 package JAAD;
-
 import java.util.*;
 
 //Clase Secuencia
@@ -19,13 +18,12 @@ public class Secuencia{
 	public int getTamanio(){
 		return listaTokens.size();
 	}
-	//NOTA JR: se le podría pasar como parametro un token y eliminar el atributo juego de la clase.
-	//esto ayudaria bastante al hacer tests de esta clase.
 	
 	//Finaliza la Secuencia (Sube de Nivel)
 		public void incrementa(){
 			//Aniade el Token Aleatorio
 			Token t = juego.randomToken();
+			//Podria generarse un Token aleatorio aqui y no requerir llamar a la funcion de Memohit(juego)
 			listaTokens.add(t);
 			posActual=0;
 		}
@@ -38,7 +36,7 @@ public class Secuencia{
 			posActual++;
 		}else{
 			//Fallo (Termina la Partida)
-			result= false;
+			result=false;
 		}
 		return result;
 	}
@@ -48,16 +46,22 @@ public class Secuencia{
 		return posActual>=listaTokens.size();
 	}
 	
+	//Get de listaTokens
 	public List<Token> getTokens()
 	{
 		return this.listaTokens;
 	}
 	
-
+	//Get de posActual
+	public int getPosicion()
+	{
+		return posActual;
+	}
+	
 	//Reproduce la Secuencia
 	public void reproducir(){
-		System.out.println("- NIVEL "+listaTokens.size());
-		System.out.println("Reproduciendo Secuencia...");
+		System.out.println("\n- NIVEL "+listaTokens.size());
+		System.out.println("\nReproduciendo Secuencia:");
 		//Muestra la Secuencia Completa (1seg. x Nº de Tokens)
 		for(Token t : listaTokens)		{
 			t.reproduce();
@@ -66,12 +70,10 @@ public class Secuencia{
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-		}
+			}//TryCatch
+		}//for
 		//Turno del Jugador (Empieza el Timer)
-		System.out.println("Turno del Jugador...");		
-	}
-	
-	
-}//Clase Secuencia
+		System.out.println("\nTurno del Jugador:");		
+	}//reproducir()
+}//Secuencia (Clase)
 
